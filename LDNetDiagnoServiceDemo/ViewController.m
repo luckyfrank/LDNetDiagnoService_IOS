@@ -58,6 +58,7 @@
     _txtfield_dormain.delegate = self;
     _txtfield_dormain.returnKeyType = UIReturnKeyDone;
     _txtfield_dormain.text = @"www.baidu.com";
+    _txtfield_dormain.text = @"cms.zhongyingtougu.com";
     [self.view addSubview:_txtfield_dormain];
 
 
@@ -160,7 +161,6 @@
 }
 
 
-#pragma mark -
 #pragma mark - textFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

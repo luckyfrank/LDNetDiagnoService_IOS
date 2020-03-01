@@ -359,17 +359,23 @@
             }
         }
     } else {
-        NSArray *subviews = [[[[UIApplication sharedApplication] valueForKey:@"statusBar"]
-                              valueForKey:@"foregroundView"] subviews];
-        NSNumber *dataNetworkItemView = nil;
-        for (id subview in subviews) {
-            if ([subview isKindOfClass:[NSClassFromString(@"UIStatusBarDataNetworkItemView") class]]) {
-                dataNetworkItemView = subview;
-                break;
+        
+        if (@available(iOS 13.0, *)) {
+            UIStatusBarManager *statusBarManager = UIApplication.sharedApplication.keyWindow.windowScene.statusBarManager;
+            nettype = NETWORK_TYPE_WIFI;
+        } else {
+            NSArray *subviews = [[[[UIApplication sharedApplication] valueForKey:@"statusBar"]
+                                  valueForKey:@"foregroundView"] subviews];
+            NSNumber *dataNetworkItemView = nil;
+            for (id subview in subviews) {
+                if ([subview isKindOfClass:[NSClassFromString(@"UIStatusBarDataNetworkItemView") class]]) {
+                    dataNetworkItemView = subview;
+                    break;
+                }
             }
+            NSNumber *num = [dataNetworkItemView valueForKey:@"dataNetworkType"];
+            nettype = [num intValue];
         }
-        NSNumber *num = [dataNetworkItemView valueForKey:@"dataNetworkType"];
-        nettype = [num intValue];
     }
    return nettype;
 }
