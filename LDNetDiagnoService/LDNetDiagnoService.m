@@ -197,13 +197,13 @@ static NSString *const kCheckOutIPURL = @"";
     if (!_appName || [_appName isEqualToString:@""]) {
         _appName = [dicBundle objectForKey:@"CFBundleDisplayName"];
     }
-    [self recordStepInfo:[NSString stringWithFormat:@"应用名称: %@", _appName]];
+    [self recordStepInfo:[NSString stringWithFormat:@"App名称: %@", _appName]];
 
     if (!_appVersion || [_appVersion isEqualToString:@""]) {
         _appVersion = [dicBundle objectForKey:@"CFBundleShortVersionString"];
     }
-    [self recordStepInfo:[NSString stringWithFormat:@"应用版本: %@", _appVersion]];
-    [self recordStepInfo:[NSString stringWithFormat:@"用户id: %@", _UID]];
+    [self recordStepInfo:[NSString stringWithFormat:@"App版本: %@", _appVersion]];
+    [self recordStepInfo:[NSString stringWithFormat:@"Id: %@", _UID]];
 
     //输出机器信息
     UIDevice *device = [UIDevice currentDevice];
